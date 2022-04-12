@@ -9,21 +9,21 @@
 /* Begin PBXBuildFile section */
 		46DE3EBA280618DB00068079 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE3EB9280618DB00068079 /* AppDelegate.swift */; };
 		46DE3EBC280618DB00068079 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE3EBB280618DB00068079 /* SceneDelegate.swift */; };
-		46DE3EBE280618DB00068079 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE3EBD280618DB00068079 /* ViewController.swift */; };
-		46DE3EC1280618DB00068079 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DE3EBF280618DB00068079 /* Main.storyboard */; };
 		46DE3EC3280618DC00068079 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46DE3EC2280618DC00068079 /* Assets.xcassets */; };
 		46DE3EC6280618DC00068079 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DE3EC4280618DC00068079 /* LaunchScreen.storyboard */; };
+		46DE3EDF2806278E00068079 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE3EDE2806278E00068079 /* LoginController.swift */; };
+		46DE3EE128062B6500068079 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DE3EE028062B6500068079 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		46DE3EB6280618DB00068079 /* UBER-CLONE-UIKIT-TRAINING.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UBER-CLONE-UIKIT-TRAINING.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46DE3EB9280618DB00068079 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46DE3EBB280618DB00068079 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		46DE3EBD280618DB00068079 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		46DE3EC0280618DB00068079 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		46DE3EC2280618DC00068079 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		46DE3EC5280618DC00068079 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		46DE3EC7280618DC00068079 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46DE3EDE2806278E00068079 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		46DE3EE028062B6500068079 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +56,135 @@
 		46DE3EB8280618DB00068079 /* UBER-CLONE-UIKIT-TRAINING */ = {
 			isa = PBXGroup;
 			children = (
+				46DE3ECE2806190400068079 /* Feature */,
+				46DE3ECD280618FF00068079 /* Core */,
 				46DE3EB9280618DB00068079 /* AppDelegate.swift */,
 				46DE3EBB280618DB00068079 /* SceneDelegate.swift */,
-				46DE3EBD280618DB00068079 /* ViewController.swift */,
-				46DE3EBF280618DB00068079 /* Main.storyboard */,
 				46DE3EC2280618DC00068079 /* Assets.xcassets */,
 				46DE3EC4280618DC00068079 /* LaunchScreen.storyboard */,
 				46DE3EC7280618DC00068079 /* Info.plist */,
+				46DE3EE028062B6500068079 /* Main.storyboard */,
 			);
 			path = "UBER-CLONE-UIKIT-TRAINING";
+			sourceTree = "<group>";
+		};
+		46DE3ECD280618FF00068079 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				46DE3EDC280619C000068079 /* Managers */,
+				46DE3ED92806199F00068079 /* Utils */,
+				46DE3ED82806199A00068079 /* SubViews */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		46DE3ECE2806190400068079 /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				46DE3ED12806191500068079 /* Views */,
+				46DE3ECF2806190900068079 /* Product */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		46DE3ECF2806190900068079 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				46DE3ED02806190F00068079 /* SubViews */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		46DE3ED02806190F00068079 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		46DE3ED12806191500068079 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				46DE3ED22806194000068079 /* Login */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		46DE3ED22806194000068079 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				46DE3ED72806195700068079 /* Service */,
+				46DE3ED52806194C00068079 /* Model */,
+				46DE3ED42806194900068079 /* View */,
+				46DE3ED32806194300068079 /* Controller */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		46DE3ED32806194300068079 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				46DE3EDE2806278E00068079 /* LoginController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		46DE3ED42806194900068079 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		46DE3ED52806194C00068079 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		46DE3ED72806195700068079 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		46DE3ED82806199A00068079 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		46DE3ED92806199F00068079 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				46DE3EDB280619A700068079 /* Extensions */,
+				46DE3EDA280619A400068079 /* Helpers */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		46DE3EDA280619A400068079 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		46DE3EDB280619A700068079 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		46DE3EDC280619C000068079 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,9 +245,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46DE3EE128062B6500068079 /* Main.storyboard in Resources */,
 				46DE3EC6280618DC00068079 /* LaunchScreen.storyboard in Resources */,
 				46DE3EC3280618DC00068079 /* Assets.xcassets in Resources */,
-				46DE3EC1280618DB00068079 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +258,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46DE3EBE280618DB00068079 /* ViewController.swift in Sources */,
 				46DE3EBA280618DB00068079 /* AppDelegate.swift in Sources */,
+				46DE3EDF2806278E00068079 /* LoginController.swift in Sources */,
 				46DE3EBC280618DB00068079 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,14 +267,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		46DE3EBF280618DB00068079 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				46DE3EC0280618DB00068079 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		46DE3EC4280618DC00068079 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,7 +404,7 @@
 				INFOPLIST_FILE = "UBER-CLONE-UIKIT-TRAINING/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -320,7 +432,7 @@
 				INFOPLIST_FILE = "UBER-CLONE-UIKIT-TRAINING/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
