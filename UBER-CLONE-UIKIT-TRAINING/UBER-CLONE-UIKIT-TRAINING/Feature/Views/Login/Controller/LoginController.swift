@@ -13,19 +13,16 @@ class LoginController : UIViewController {
  // MARK:  properties
 
 
- private let headerText: UILabel = {
-  let label = UILabel()
-  label.textColor = .white
-  label.text = "UBER"
-  label.font = UIFont(name: "Avenir-Light", size: 36)
-  return label
- }()
+
 
 
  override func viewDidLoad() {
   super.viewDidLoad()
   view.backgroundColor = UIColor.init(red: 25/255, green: 25/255, blue: 25/255, alpha: 1)
-  configureHeaderText(pioneerView : headerText,targetView: view)
+  makeHeaderText(
+   pioneerView : CustomLabel.makeSimpleLabel( labelText: "UBER", labelColor: .lightGray, topography: .largeTitle),
+   targetView: view)
+  makeUserNameField(pioneerView: CustomStack.makeSimpleHStack(children: [UI]), targetView: <#T##UIView#>, containerView: <#T##UIView#>)
 
 
 
@@ -42,12 +39,20 @@ class LoginController : UIViewController {
 
 
 
-func configureHeaderText(pioneerView:UILabel,targetView:UIView) -> Void {
+func makeHeaderText(pioneerView:UILabel,targetView:UIView) -> Void {
  targetView.addSubview(pioneerView)
  pioneerView.anchor(top: targetView.safeAreaLayoutGuide.topAnchor)
  pioneerView.centerX(inView: targetView)
-
 }
 
+func makeUserNameField(pioneerView:UIView,targetView:UIView,containerView: UIView) -> Void {
+ containerView.addSubview(pioneerView)
+ pioneerView.anchor(top: targetView.bottomAnchor,left: targetView.leadingAnchor, paddingLeft: 16)
+
+
+
+
+}
+		
 
 
