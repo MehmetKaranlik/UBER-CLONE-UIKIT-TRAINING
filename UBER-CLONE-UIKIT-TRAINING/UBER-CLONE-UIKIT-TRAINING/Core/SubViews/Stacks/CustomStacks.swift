@@ -20,4 +20,15 @@ open class CustomStack : UIStackView {
   }
   return stack
  }
+
+ public static func makeSimpleVStack(alignment: UIStackView.Alignment?=nil, spacing : CGFloat?=nil,children : [UIView]) -> UIStackView {
+  let stack = UIStackView()
+  stack.axis = .vertical
+  stack.alignment = alignment ?? .center
+  stack.spacing = spacing ?? 0
+  children.forEach { view in
+   stack.addArrangedSubview(view)
+  }
+  return stack
+ }
 }

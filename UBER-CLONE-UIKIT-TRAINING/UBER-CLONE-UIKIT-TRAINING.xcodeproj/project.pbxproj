@@ -16,6 +16,7 @@
 		46DE3EE328063D4F00068079 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE3EE228063D4F00068079 /* UIViewExtensions.swift */; };
 		46E3EABF2806F6C100667769 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E3EABE2806F6C100667769 /* CustomLabel.swift */; };
 		46E3EAC22806FB4A00667769 /* CustomStacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E3EAC12806FB4A00667769 /* CustomStacks.swift */; };
+		46E3EAC52807327B00667769 /* CustomTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E3EAC42807327B00667769 /* CustomTextFields.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		46DE3EE228063D4F00068079 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		46E3EABE2806F6C100667769 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		46E3EAC12806FB4A00667769 /* CustomStacks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStacks.swift; sourceTree = "<group>"; };
+		46E3EAC42807327B00667769 /* CustomTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFields.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 		46DE3ED82806199A00068079 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				46E3EAC32807326100667769 /* TextFields */,
 				46E3EAC02806FB2200667769 /* Stacks */,
 				46E3EABD2806F6AD00667769 /* Labels */,
 			);
@@ -210,6 +213,14 @@
 				46E3EAC12806FB4A00667769 /* CustomStacks.swift */,
 			);
 			path = Stacks;
+			sourceTree = "<group>";
+		};
+		46E3EAC32807326100667769 /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				46E3EAC42807327B00667769 /* CustomTextFields.swift */,
+			);
+			path = TextFields;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46DE3EBA280618DB00068079 /* AppDelegate.swift in Sources */,
+				46E3EAC52807327B00667769 /* CustomTextFields.swift in Sources */,
 				46E3EAC22806FB4A00667769 /* CustomStacks.swift in Sources */,
 				46E3EABF2806F6C100667769 /* CustomLabel.swift in Sources */,
 				46DE3EDF2806278E00068079 /* LoginController.swift in Sources */,
