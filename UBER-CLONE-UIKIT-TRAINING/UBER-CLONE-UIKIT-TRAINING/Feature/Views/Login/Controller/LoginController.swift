@@ -125,7 +125,7 @@ class LoginController : UIViewController {
  override func viewDidLoad() {
   super.viewDidLoad()
   view.backgroundColor = UIColor.init(red: 25/255, green: 25/255, blue: 25/255, alpha: 1)
-
+  self.navigationController?.navigationBar.isHidden = true
 
 
   makeLabel()
