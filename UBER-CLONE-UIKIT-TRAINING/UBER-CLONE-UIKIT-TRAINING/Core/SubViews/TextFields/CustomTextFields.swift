@@ -14,7 +14,9 @@ open class CustomTextField : UITextField {
   textColor : UIColor?=nil,
   textFont : UIFont.TextStyle,
   capitalizationStyle : UITextAutocapitalizationType?=nil,
-  placeholderText : String?=nil
+  placeholderText : String?=nil,
+  placeholderTextColor : UIColor?=nil,
+  isSecure : Bool?=false
 
 
  ) -> UITextField {
@@ -22,10 +24,10 @@ open class CustomTextField : UITextField {
   textField.textColor = textColor
   textField.font = .preferredFont(forTextStyle: textFont)
   textField.autocapitalizationType = capitalizationStyle ?? .sentences
-  textField.placeholder = placeholderText ?? "Hint text"
   textField.keyboardAppearance = .dark
   textField.borderStyle = .none
-
+  textField.attributedPlaceholder = .init(string: placeholderText ?? "", attributes: [NSAttributedString.Key.foregroundColor  : placeholderTextColor ?? textColor])
+  textField.isSecureTextEntry = isSecure ?? false
   return textField
  }
 }
