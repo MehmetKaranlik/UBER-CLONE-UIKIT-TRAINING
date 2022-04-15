@@ -127,6 +127,7 @@ class LoginController : UIViewController {
   guard let password = passwordTextField.text else { return }
   service.loginUser(email: email, password: password) {
    print("logged in")
+   self.dismiss(animated: false)
   }
  }
 

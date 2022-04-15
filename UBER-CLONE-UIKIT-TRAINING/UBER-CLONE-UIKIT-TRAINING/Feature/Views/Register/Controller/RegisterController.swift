@@ -112,7 +112,7 @@ let service = RegisterService()
   button.configuration = UIButton.Configuration.filled()
   button.configuration?.cornerStyle = .capsule
   button.setTitle("Sign Up", for: [])
-  button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
+  button.addTarget(RegisterViewController.self, action: #selector(handleRegister), for: .touchUpInside)
 
   return button
  }()
@@ -131,6 +131,7 @@ let service = RegisterService()
   service.registerUser(email: email, password: password, userType: userType)
  }
 
+
  override func viewDidLoad() {
   view.backgroundColor = UIColor.init(red: 25/255, green: 25/255, blue: 25/255, alpha: 1)
   makeHeaderLabel()
@@ -139,11 +140,15 @@ let service = RegisterService()
   makePasswordContainerView()
   makePickerContainerView()
   makeSeparetorView()
-  view.addSubview(registerButton)
-  registerButton.anchor(top: seperatorView.bottomAnchor,right: view.rightAnchor, left: view.leftAnchor, paddingTop: 32, paddingBottom: 0, paddingRight: 24, paddingLeft: 24, height: 40)
+  makeRegisterButton()
  }
 
  // MARK:  Makers
+
+ fileprivate func makeRegisterButton() {
+  view.addSubview(registerButton)
+  registerButton.anchor(top: seperatorView.bottomAnchor,right: view.rightAnchor, left: view.leftAnchor, paddingTop: 32, paddingBottom: 0, paddingRight: 24, paddingLeft: 24, height: 40)
+ }
 
  fileprivate func makeHeaderLabel() {
   view.addSubview(headerLabel)

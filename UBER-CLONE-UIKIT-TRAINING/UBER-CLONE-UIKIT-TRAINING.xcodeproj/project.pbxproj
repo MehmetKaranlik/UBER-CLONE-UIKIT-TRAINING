@@ -19,6 +19,10 @@
 		4617FFCC2809B1D100C1A40E /* LoginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4617FFCB2809B1D100C1A40E /* LoginProtocol.swift */; };
 		4617FFCE2809B21E00C1A40E /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4617FFCD2809B21E00C1A40E /* LoginService.swift */; };
 		4617FFD62809B50200C1A40E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4617FFD52809B50200C1A40E /* HomeViewController.swift */; };
+		4617FFD82809FA0200C1A40E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4617FFD72809FA0200C1A40E /* LocationManager.swift */; };
+		4617FFDA2809FDB500C1A40E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4617FFD92809FDB500C1A40E /* HomeView.swift */; };
+		4617FFDC2809FDF600C1A40E /* LocationInputActivasionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4617FFDB2809FDF600C1A40E /* LocationInputActivasionView.swift */; };
+		4617FFDE280A0F1F00C1A40E /* LocationInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4617FFDD280A0F1F00C1A40E /* LocationInputView.swift */; };
 		467780ED280820B7005FDF49 /* RoundedRectangleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467780EC280820B7005FDF49 /* RoundedRectangleButton.swift */; };
 		467780F228082DC6005FDF49 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467780F128082DC6005FDF49 /* RegisterController.swift */; };
 		46DE3EBA280618DB00068079 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DE3EB9280618DB00068079 /* AppDelegate.swift */; };
@@ -42,6 +46,10 @@
 		4617FFCB2809B1D100C1A40E /* LoginProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginProtocol.swift; sourceTree = "<group>"; };
 		4617FFCD2809B21E00C1A40E /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		4617FFD52809B50200C1A40E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4617FFD72809FA0200C1A40E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		4617FFD92809FDB500C1A40E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		4617FFDB2809FDF600C1A40E /* LocationInputActivasionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInputActivasionView.swift; sourceTree = "<group>"; };
+		4617FFDD280A0F1F00C1A40E /* LocationInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInputView.swift; sourceTree = "<group>"; };
 		467780EC280820B7005FDF49 /* RoundedRectangleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectangleButton.swift; sourceTree = "<group>"; };
 		467780F128082DC6005FDF49 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		46DE3EB6280618DB00068079 /* UBER-CLONE-UIKIT-TRAINING.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UBER-CLONE-UIKIT-TRAINING.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,6 +127,7 @@
 		4617FFD22809B4E600C1A40E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4617FFD92809FDB500C1A40E /* HomeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -235,6 +244,8 @@
 		46DE3ED02806190F00068079 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				4617FFDB2809FDF600C1A40E /* LocationInputActivasionView.swift */,
+				4617FFDD280A0F1F00C1A40E /* LocationInputView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -329,6 +340,7 @@
 		46DE3EDC280619C000068079 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				4617FFD72809FA0200C1A40E /* LocationManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -439,6 +451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46DE3EBA280618DB00068079 /* AppDelegate.swift in Sources */,
+				4617FFD82809FA0200C1A40E /* LocationManager.swift in Sources */,
 				467780ED280820B7005FDF49 /* RoundedRectangleButton.swift in Sources */,
 				4617FFC22809A42E00C1A40E /* RegisterView.swift in Sources */,
 				4617FFCC2809B1D100C1A40E /* LoginProtocol.swift in Sources */,
@@ -446,9 +459,12 @@
 				4617FFB8280962C600C1A40E /* RegisterProtocol.swift in Sources */,
 				46E3EAC52807327B00667769 /* CustomTextFields.swift in Sources */,
 				4617FFCE2809B21E00C1A40E /* LoginService.swift in Sources */,
+				4617FFDA2809FDB500C1A40E /* HomeView.swift in Sources */,
 				46E3EAC22806FB4A00667769 /* CustomStacks.swift in Sources */,
 				46E3EABF2806F6C100667769 /* CustomLabel.swift in Sources */,
 				46DE3EDF2806278E00068079 /* LoginController.swift in Sources */,
+				4617FFDC2809FDF600C1A40E /* LocationInputActivasionView.swift in Sources */,
+				4617FFDE280A0F1F00C1A40E /* LocationInputView.swift in Sources */,
 				4617FFD62809B50200C1A40E /* HomeViewController.swift in Sources */,
 				4617FFBA280963B600C1A40E /* RegisterService.swift in Sources */,
 				46DE3EE328063D4F00068079 /* UIViewExtensions.swift in Sources */,

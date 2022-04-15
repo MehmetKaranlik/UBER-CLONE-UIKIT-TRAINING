@@ -61,4 +61,16 @@ extension UIView {
   self.translatesAutoresizingMaskIntoConstraints = false
   self.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
  }
+
+ func asCircle() {
+  self.layer.cornerRadius = self.frame.height / 2
+  self.layer.masksToBounds = true
+ }
+
+ func addShadow() {
+  self.layer.shadowColor = UIColor.black.cgColor
+  self.layer.shadowOpacity = 0.45
+  self.layer.shadowOffset = CGSize(width: 1, height: 1)
+  self.layer.masksToBounds = false
+ }
 }
