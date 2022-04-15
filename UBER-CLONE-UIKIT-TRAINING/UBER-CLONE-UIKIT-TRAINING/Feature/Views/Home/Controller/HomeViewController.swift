@@ -3,28 +3,28 @@ import UIKit
 import Firebase
 import MapKit
 class HomeViewController : UIViewController, LocationActivationViewDelegate, LocationInputViewDelegate {
-
-
-
-
+ 
+ 
+ 
+ 
   // MARK:  properties
-
+ 
  
  let locationManager : LocationManager = LocationManager.shared
-
+ 
  let mapView : MKMapView = MKMapView()
-
+ 
  private let locationActivasionView : LocationActivationView =  LocationActivationView()
-
+ 
  private let locationInputView : LocationInputView = LocationInputView()
-
-
+ 
+ 
   // MARK: Lifecyle
-
+ 
   // MARK: Selectors
-
+ 
  override func viewDidLoad() {
-
+  
   super.viewDidLoad()
   view.backgroundColor = .red
   navigationController?.navigationBar.isHidden = true
@@ -33,36 +33,40 @@ class HomeViewController : UIViewController, LocationActivationViewDelegate, Loc
   locationManager.enableLocationServices()
   makeInputView()
  }
-
-
-
+ 
+ 
+ 
   // MARK:  Makers
-
+ 
  fileprivate func makeMapView() {
   view.addSubview(mapView)
   configureMapView()
  }
-
+ 
  fileprivate func configureMapView() {
   mapView.frame = view.frame
   mapView.showsUserLocation = true
   mapView.userTrackingMode = .follow
  }
-
+ 
  fileprivate func makeInputView() {
   view.addSubview(locationActivasionView)
-
+  
   locationActivasionView.centerX(inView: view)
   locationActivasionView.delegate = self
   locationActivasionView.anchor(top:view.safeAreaLayoutGuide.topAnchor,
-                           paddingTop: 40,
-                           paddingBottom: 0,
-                           width : view.frame.width - 64,
-                           height: 50)
-
+                                paddingTop: 40,
+                                paddingBottom: 0,
+                                width : view.frame.width - 64,
+                                height: 50)
+  
  }
-
-
+ 
+ 
+ 
+ 
+  // MARK: Functions
+ 
  func checkUserStatus() {
   if (Firebase.Auth.auth().currentUser?.uid) != nil  {
    print("user was already logged in")
@@ -72,19 +76,21 @@ class HomeViewController : UIViewController, LocationActivationViewDelegate, Loc
    present(vc, animated: false)
   }
  }
-
+ 
  func logout() {
   do {
    try  Firebase.Auth.auth().signOut()
   }catch {
    print("error while loggin out")
   }
-
+  
  }
-  // MARK:  Helper Functions
-
+ 
+ 
+ 
+ 
+ 
  func dismissLocationInputView() {
-  print("dismis calisti")
   UIView.animate(withDuration: 0.3) {
    self.locationInputView.alpha = 0
   } completion: { _ in
@@ -93,26 +99,24 @@ class HomeViewController : UIViewController, LocationActivationViewDelegate, Loc
    }
   }
  }
-
-
+ 
+ 
  func configureLocationInputView() {
-  print("anan")
   view?.addSubview(locationInputView)
   locationInputView.delegate = self
   locationInputView.anchor(top: view.topAnchor,  right: view.rightAnchor, left: view.leftAnchor, height: 200)
   locationInputView.alpha = 0
   UIView.animate(withDuration: 0.5) {
    self.locationInputView.alpha = 1
-
   }
  }
-
+ 
  func presentLocationInputView() {
   locationActivasionView.alpha = 0
   configureLocationInputView()
  }
-
-
+ 
+ 
 }
 
 
