@@ -23,10 +23,11 @@ open class CustomTextField : UITextField {
   let textField = UITextField()
   textField.textColor = textColor
   textField.font = .preferredFont(forTextStyle: textFont)
-  textField.autocapitalizationType = capitalizationStyle ?? .sentences
+  textField.autocapitalizationType = capitalizationStyle ?? .none
   textField.keyboardAppearance = .dark
   textField.borderStyle = .none
-  textField.attributedPlaceholder = .init(string: placeholderText ?? "", attributes: [NSAttributedString.Key.foregroundColor  : placeholderTextColor ?? textColor])
+  textField.autocorrectionType = .no
+  textField.attributedPlaceholder = .init(string: placeholderText ?? "", attributes: [NSAttributedString.Key.foregroundColor  : (placeholderTextColor ?? .white) as Any])
   textField.isSecureTextEntry = isSecure ?? false
   return textField
  }

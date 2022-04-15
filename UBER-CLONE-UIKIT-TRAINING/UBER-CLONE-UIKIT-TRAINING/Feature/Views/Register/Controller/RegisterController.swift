@@ -7,11 +7,13 @@
 
 import Foundation
 import UIKit
-
+import Firebase
+import FirebaseDatabase
 
 class RegisterViewController : UIViewController {
  // MARK:  properties
- 
+let service = RegisterService()
+
  private let headerLabel : UILabel = {
   let label = CustomLabel.makeSimpleLabel( labelText: "Register", labelColor: .lightGray, topography: .largeTitle)
   return label
@@ -82,14 +84,13 @@ class RegisterViewController : UIViewController {
   return containerView
  }()
 
- let pickerContainerView : UIView = {
+ lazy var pickerContainerView : UIView = {
   let containerView = UIView()
   let imageView = UIImageView()
   imageView.image = .init(named: "ic_account_box_white_2x")
   imageView.alpha = 0.87
   containerView.addSubview(imageView)
   imageView.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, paddingTop: 8, paddingBottom: 8, paddingRight: 8, paddingLeft: 8, width: 32, height: 32)
-  let segmentedController = UISegmentedControl(items: ["Driver","Rider"])
   containerView.addSubview(segmentedController)
   segmentedController.anchor(top: imageView.bottomAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, left: containerView.leftAnchor, paddingTop: 8, paddingBottom: 8, paddingRight: 8, paddingLeft: 8, height: 30)
   return containerView
@@ -98,10 +99,12 @@ class RegisterViewController : UIViewController {
  let seperatorView : UIView = {
   let seperatorView = UIView()
   seperatorView.backgroundColor = .lightGray
-
-
-
   return seperatorView
+ }()
+
+ let segmentedController : UISegmentedControl = {
+  let segmentedController = UISegmentedControl(items: ["Driver","Rider"])
+  return segmentedController
  }()
 
  let registerButton : UIButton = {
@@ -109,6 +112,7 @@ class RegisterViewController : UIViewController {
   button.configuration = UIButton.Configuration.filled()
   button.configuration?.cornerStyle = .capsule
   button.setTitle("Sign Up", for: [])
+  button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
 
   return button
  }()
@@ -120,13 +124,12 @@ class RegisterViewController : UIViewController {
   self.navigationController?.popViewController(animated: true)
  }
 
-
-
-
-
-
-
-
+ @objc func handleRegister() {
+  guard let email = emailTextField.text else { return }
+  guard let password = passwordTextField.text else { return }
+  let userType = getUserType(index: segmentedController.selectedSegmentIndex)
+  service.registerUser(email: email, password: password, userType: userType)
+ }
 
  override func viewDidLoad() {
   view.backgroundColor = UIColor.init(red: 25/255, green: 25/255, blue: 25/255, alpha: 1)
@@ -139,10 +142,6 @@ class RegisterViewController : UIViewController {
   view.addSubview(registerButton)
   registerButton.anchor(top: seperatorView.bottomAnchor,right: view.rightAnchor, left: view.leftAnchor, paddingTop: 32, paddingBottom: 0, paddingRight: 24, paddingLeft: 24, height: 40)
  }
-
-
-
-
 
  // MARK:  Makers
 

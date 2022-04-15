@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>510877080890-v4bjo0ujvbijfkf2tc6el4g2vc71de2d.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.510877080890-v4bjo0ujvbijfkf2tc6el4g2vc71de2d</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA7Z2MUXraup9QbpnCRFnjOxU2CmJoNXA4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>510877080890</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.meatlanosrep.UBER-CLONE-UIKIT-TRAINING</string>
+	<key>PROJECT_ID</key>
+	<string>uikit-demo-uber</string>
+	<key>STORAGE_BUCKET</key>
+	<string>uikit-demo-uber.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:510877080890:ios:272d918c4665ecb203c403</string>
+	<key>DATABASE_URL</key>
+	<string>https://uikit-demo-uber-default-rtdb.europe-west1.firebasedatabase.app</string>
+</dict>
+</plist>

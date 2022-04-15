@@ -12,6 +12,9 @@ import UIKit
 class LoginController : UIViewController {
   // MARK:  properties
 
+ let service : LoginService = LoginService()
+
+
  private let headerLabel : UILabel = {
   let label = CustomLabel.makeSimpleLabel( labelText: "UBER", labelColor: .lightGray, topography: .largeTitle)
   return label
@@ -90,6 +93,7 @@ class LoginController : UIViewController {
   button.configuration = UIButton.Configuration.filled()
   button.configuration?.cornerStyle = .capsule
   button.setTitle("Login", for: [])
+  button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
 
   return button
 
@@ -116,6 +120,14 @@ class LoginController : UIViewController {
   @objc func navigate() {
    print("123")
   self.navigationController?.pushViewController(RegisterViewController(), animated: true)
+ }
+
+ @objc func handleLogin() {
+  guard let email = emailTextField.text else { return }
+  guard let password = passwordTextField.text else { return }
+  service.loginUser(email: email, password: password) {
+   print("logged in")
+  }
  }
 
  
