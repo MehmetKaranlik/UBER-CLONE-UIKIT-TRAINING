@@ -1,0 +1,6 @@
+framework module Pods_UBER_CLONE_UIKIT_TRAINING {
+  umbrella header "Pods-UBER-CLONE-UIKIT-TRAINING-umbrella.h"
+
+  export *
+  module * { export * }
+}
