@@ -2,6 +2,8 @@ import Foundation
 import UIKit
 import Firebase
 import MapKit
+
+
 class HomeViewController : UIViewController, LocationActivationViewDelegate, LocationInputViewDelegate {
  
  
@@ -11,12 +13,22 @@ class HomeViewController : UIViewController, LocationActivationViewDelegate, Loc
  
  
  let locationManager : LocationManager = LocationManager.shared
+
+ let service : HomeService = HomeService()
  
  let mapView : MKMapView = MKMapView()
+
+ var headerText : String? {
+  didSet {locationInputView.titleLabel.text = headerText ?? ""}
+ }
+
+ var headerSectionHeight : CGFloat = 200
  
  private let locationActivasionView : LocationActivationView =  LocationActivationView()
  
  private let locationInputView : LocationInputView = LocationInputView()
+
+ private let tableView = UITableView()
  
  
   // MARK: Lifecyle
@@ -24,19 +36,37 @@ class HomeViewController : UIViewController, LocationActivationViewDelegate, Loc
   // MARK: Selectors
  
  override func viewDidLoad() {
-  
   super.viewDidLoad()
-  view.backgroundColor = .red
-  navigationController?.navigationBar.isHidden = true
-  makeMapView()
+
   checkUserStatus()
+
+  getUserCredentials()
+
+  view.backgroundColor = .red
+
+  navigationController?.navigationBar.isHidden = true
+
+  makeMapView()
+
   locationManager.enableLocationServices()
+
   makeInputView()
+
+  configureTableView()
+
+
  }
  
  
  
   // MARK:  Makers
+
+ func getUserCredentials() {
+  print("fonksiyon calisti")
+  service.getUserCredentials { email in
+   self.headerText = email
+  }
+ }
  
  fileprivate func makeMapView() {
   view.addSubview(mapView)
@@ -61,7 +91,23 @@ class HomeViewController : UIViewController, LocationActivationViewDelegate, Loc
                                 height: 50)
   
  }
- 
+
+ fileprivate func configureTableView() {
+  tableView.delegate = self
+  tableView.dataSource = self
+  tableView.register(CellWithSubtitleTableViewCell.self, forCellReuseIdentifier: locationReuseIdentifier)
+  tableView.allowsSelection = false
+  tableView.rowHeight = 60
+  tableView.backgroundColor = .groupTableViewBackground
+  tableView.sectionIndexBackgroundColor = .red
+  tableView.sectionHeaderHeight = 5
+  let height = view.frame.height - headerSectionHeight
+  tableView.frame = CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: height)
+
+  view.addSubview(tableView)
+ }
+
+
  
  
  
@@ -95,7 +141,10 @@ class HomeViewController : UIViewController, LocationActivationViewDelegate, Loc
    self.locationInputView.alpha = 0
   } completion: { _ in
    UIView.animate(withDuration: 0.3) {
+    self.tableView.frame.origin.y = self.view.frame.height
     self.locationActivasionView.alpha = 1
+    self.tableView.alpha = 0
+    self.locationInputView.removeFromSuperview()
    }
   }
  }
@@ -113,10 +162,39 @@ class HomeViewController : UIViewController, LocationActivationViewDelegate, Loc
  
  func presentLocationInputView() {
   locationActivasionView.alpha = 0
+  UIView.animate(withDuration: 0.8) {
+   self.tableView.frame.origin.y = 200
+   self.tableView.alpha = 1
+  }
   configureLocationInputView()
  }
  
  
+}
+
+
+// MARK:  TableView Options
+extension HomeViewController :UITableViewDataSource, UITableViewDelegate {
+ func numberOfSections(in tableView: UITableView) -> Int {
+  return 2
+ }
+ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  let cell = tableView.dequeueReusableCell(withIdentifier: locationReuseIdentifier, for: indexPath) as! CellWithSubtitleTableViewCell
+  return cell
+ }
+
+ func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  return section == 0 ? 2 : 5
+ }
+
+ func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+  return "  "
+ }
+
+
+
+
+
 }
 
 

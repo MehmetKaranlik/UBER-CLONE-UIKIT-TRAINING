@@ -9,10 +9,12 @@ import Foundation
 import UIKit
 import Firebase
 import FirebaseDatabase
+import GeoFire
 
 class RegisterViewController : UIViewController {
  // MARK:  properties
 let service = RegisterService()
+ let locationManager = LocationManager.shared
 
  private let headerLabel : UILabel = {
   let label = CustomLabel.makeSimpleLabel( labelText: "Register", labelColor: .lightGray, topography: .largeTitle)
@@ -112,7 +114,7 @@ let service = RegisterService()
   button.configuration = UIButton.Configuration.filled()
   button.configuration?.cornerStyle = .capsule
   button.setTitle("Sign Up", for: [])
-  button.addTarget(RegisterViewController.self, action: #selector(handleRegister), for: .touchUpInside)
+  button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
 
   return button
  }()
@@ -125,10 +127,39 @@ let service = RegisterService()
  }
 
  @objc func handleRegister() {
+
   guard let email = emailTextField.text else { return }
+
   guard let password = passwordTextField.text else { return }
+
+  let index = segmentedController.selectedSegmentIndex
   let userType = getUserType(index: segmentedController.selectedSegmentIndex)
-  service.registerUser(email: email, password: password, userType: userType)
+
+
+  if index == 0 {
+   let geofire = GeoFire(firebaseRef: REF_DRIVER_LOCATIONS)
+
+   guard let location = locationManager.locationManager.location else { return }
+
+   service.registerUser(email: email, password: password, userType: userType) { uid in
+
+    geofire.setLocation(location, forKey: uid) { error in
+
+     if let err = error {
+      print("DEBUG: \(err)")
+     }
+    }
+   }
+   return
+
+  }
+
+
+  service.registerUser(email: email, password: password, userType: userType) { uid in
+
+  }
+
+  navigateBack()
  }
 
 

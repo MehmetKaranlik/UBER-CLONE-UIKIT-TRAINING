@@ -12,7 +12,12 @@ import MapKit
 class LocationManager : NSObject, CLLocationManagerDelegate {
  
  static let shared : LocationManager = LocationManager()
+
  let locationManager = CLLocationManager()
+
+
+ override init() {
+ }
  
  
  

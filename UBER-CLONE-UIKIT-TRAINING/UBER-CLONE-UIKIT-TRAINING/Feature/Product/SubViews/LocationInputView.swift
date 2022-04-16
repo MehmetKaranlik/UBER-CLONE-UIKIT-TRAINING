@@ -22,10 +22,45 @@ class LocationInputView: UIView {
   button.addTarget(self, action: #selector(handleBackButtonTapped), for: .touchUpInside)
   return button
  }()
- let titleLabel : UILabel = {
+ var titleLabel : UILabel = {
   let label = CustomLabel.makeSimpleLabel(labelText: "Amber", labelColor: UIColor.darkGray, topography: UIFont.TextStyle.body )
   label.font = .systemFont(ofSize: 16, weight: .bold)
   return label
+ }()
+
+ let currentLocationIndicatorView : UIView = {
+  let view = UIView()
+  view.backgroundColor = .lightGray
+  view.layer.cornerRadius = 3
+  
+  return view
+ }()
+
+ let destinationLocationIndicatorView : UIView = {
+  let view = UIView()
+  view.backgroundColor = .gray
+
+  return view
+ }()
+
+ let linkingView : UIView = {
+  let view = UIView()
+  view.backgroundColor = .lightGray
+  return view
+ }()
+
+ let currentLocationTextField : UITextField = {
+  let tf = UITextField()
+  tf.backgroundColor = .groupTableViewBackground
+  tf.placeholder = "   Current Location"
+  return tf
+ }()
+
+ let destinationLocationTextField : UITextField = {
+  let tf = UITextField()
+  tf.backgroundColor = .lightGray
+  tf.placeholder = "   Please type a adress here"
+  return tf
  }()
  
  
@@ -43,12 +78,30 @@ class LocationInputView: UIView {
  
  
  
+
+
+
+
+
+ fileprivate func makeDestionationTextField() {
+  addSubview(destinationLocationTextField)
+  destinationLocationTextField.centerY(inView: destinationLocationIndicatorView)
+  destinationLocationTextField.anchor(right: rightAnchor, left: destinationLocationIndicatorView.rightAnchor, paddingTop: 0, paddingBottom: 0, paddingRight: 50, paddingLeft: 20,  height: 40)
+ }
+
  override init(frame: CGRect) {
   super.init(frame: frame)
   backgroundColor = .white
   addShadow()
   makeBackButton()
   makeTitleLabel()
+  makeCurrentLocationIndicatorView()
+  makeCurrentLocationTextField()
+  makeDestionationIndicatorView()
+  makeDestionationTextField()
+  addSubview(linkingView)
+  linkingView.centerX(inView: currentLocationIndicatorView)
+  linkingView.anchor(top: currentLocationIndicatorView.bottomAnchor, bottom: destinationLocationIndicatorView.topAnchor, paddingTop: 6, paddingBottom: 6, paddingRight: 0, paddingLeft: 0, width: 0.75)
  }
  
  required init?(coder aDecoder: NSCoder) {
@@ -57,9 +110,27 @@ class LocationInputView: UIView {
  
  
   // MARK:  Makers
- 
- 
- 
+
+
+ fileprivate func makeDestionationIndicatorView() {
+  addSubview(destinationLocationIndicatorView)
+  destinationLocationIndicatorView.centerX(inView: backButton)
+  destinationLocationIndicatorView.anchor(top: currentLocationIndicatorView.bottomAnchor, paddingTop: 50, paddingBottom: 0, paddingRight: 0, paddingLeft: 0, width: 6, height: 6)
+ }
+
+ fileprivate func makeCurrentLocationTextField() {
+  addSubview(currentLocationTextField)
+  currentLocationTextField.centerY(inView: currentLocationIndicatorView)
+  currentLocationTextField.anchor(right: rightAnchor, left: currentLocationIndicatorView.rightAnchor, paddingTop: 0, paddingBottom: 0, paddingRight: 50, paddingLeft: 20, height: 40)
+ }
+
+
+ fileprivate func makeCurrentLocationIndicatorView() {
+  addSubview(currentLocationIndicatorView)
+  currentLocationIndicatorView.centerX(inView: backButton)
+  currentLocationIndicatorView.anchor(top: backButton.bottomAnchor, paddingTop: 24, paddingBottom: 0, paddingRight: 0, paddingLeft: 0, width: 6, height: 6)
+ }
+
  fileprivate func makeTitleLabel() {
   addSubview(titleLabel)
   titleLabel.centerX(inView: self)
