@@ -35,6 +35,8 @@ class HomeViewController : UIViewController, LocationActivationViewDelegate, Loc
  
   // MARK: Selectors
  
+
+
  override func viewDidLoad() {
   super.viewDidLoad()
 
@@ -54,6 +56,8 @@ class HomeViewController : UIViewController, LocationActivationViewDelegate, Loc
 
   configureTableView()
 
+  fetchDrivers()
+
 
  }
  
@@ -61,8 +65,46 @@ class HomeViewController : UIViewController, LocationActivationViewDelegate, Loc
  
   // MARK:  Makers
 
+ fileprivate func fetchDrivers() {
+  service.fetchDrivers(location: locationManager.locationManager.location!) { user in
+
+   guard let coordinate = user.location?.coordinate else { return }
+
+   // to check is that anno is already visible on map
+
+   var driverIsVisible : Bool {
+
+    return self.mapView.annotations.contains { annotations in
+
+     guard let driverAnno = annotations as? DriverAnnotation else { return false}
+
+     if driverAnno.uid == user.email {
+       // update position custom func #note : to make this work coordinate property needed to be declared as dynamic var 
+      driverAnno.updateAnnotationPosition(withCoordinate: coordinate)
+
+
+      
+      return true
+     }
+
+     return false
+
+    }
+
+   }
+
+
+   if !driverIsVisible {
+    self.mapView.addAnnotation(DriverAnnotation(uid: user.email, coordinate: coordinate))
+   }
+
+
+  }
+ }
+
+ 
+
  func getUserCredentials() {
-  print("fonksiyon calisti")
   service.getUserCredentials { email in
    self.headerText = email
   }
@@ -77,6 +119,7 @@ class HomeViewController : UIViewController, LocationActivationViewDelegate, Loc
   mapView.frame = view.frame
   mapView.showsUserLocation = true
   mapView.userTrackingMode = .follow
+  mapView.delegate = self
  }
  
  fileprivate func makeInputView() {
@@ -195,6 +238,20 @@ extension HomeViewController :UITableViewDataSource, UITableViewDelegate {
 
 
 
+}
+
+
+
+// to set Custom Annotation View
+extension HomeViewController : MKMapViewDelegate {
+ func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+  if let annotation = annotation as? DriverAnnotation {
+   let view = MKAnnotationView(annotation: annotation, reuseIdentifier: "DriverAnno")
+   view.image = UIImage(named: "chevron-sign-to-right")
+   return view
+  }
+  return nil
+ }
 }
 
 

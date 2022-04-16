@@ -138,27 +138,17 @@ let service = RegisterService()
 
   if index == 0 {
    let geofire = GeoFire(firebaseRef: REF_DRIVER_LOCATIONS)
-
    guard let location = locationManager.locationManager.location else { return }
-
    service.registerUser(email: email, password: password, userType: userType) { uid in
-
     geofire.setLocation(location, forKey: uid) { error in
-
      if let err = error {
       print("DEBUG: \(err)")
      }
     }
    }
    return
-
   }
-
-
-  service.registerUser(email: email, password: password, userType: userType) { uid in
-
-  }
-
+  service.registerUser(email: email, password: password, userType: userType) { uid in}
   navigateBack()
  }
 

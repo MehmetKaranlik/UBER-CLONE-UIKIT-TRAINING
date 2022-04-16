@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import CoreLocation
 
 
 struct User {
  let email: String
  let userType: UserType.RawValue
+ var location : CLLocation?
 
  init(dictionary : [String: Any]) {
   self.email = dictionary["email"] as! String

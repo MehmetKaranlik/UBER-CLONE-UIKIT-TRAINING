@@ -51,7 +51,7 @@ class LocationInputView: UIView {
 
  let currentLocationTextField : UITextField = {
   let tf = UITextField()
-  tf.backgroundColor = .groupTableViewBackground
+  tf.backgroundColor = .groupTableViewBackground 
   tf.placeholder = "   Current Location"
   return tf
  }()

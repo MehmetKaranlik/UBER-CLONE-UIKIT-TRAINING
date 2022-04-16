@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		030A7CAEA46ABF3C7941134C /* Pods_UBER_CLONE_UIKIT_TRAINING.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C592B529F6D889F2BF6EFFB /* Pods_UBER_CLONE_UIKIT_TRAINING.framework */; };
 		4610E845280B41EF007B0D3B /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4610E844280B41EF007B0D3B /* GlobalVariables.swift */; };
+		4610E848280B5CC2007B0D3B /* CustomDriverAnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4610E847280B5CC2007B0D3B /* CustomDriverAnotation.swift */; };
 		4617FFB8280962C600C1A40E /* RegisterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4617FFB7280962C600C1A40E /* RegisterProtocol.swift */; };
 		4617FFBA280963B600C1A40E /* RegisterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4617FFB9280963B600C1A40E /* RegisterService.swift */; };
 		4617FFBD2809975300C1A40E /* UserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4617FFBC2809975300C1A40E /* UserType.swift */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		221BDDD4F250B46C11C1CAFF /* Pods-UBER-CLONE-UIKIT-TRAINING.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UBER-CLONE-UIKIT-TRAINING.debug.xcconfig"; path = "Target Support Files/Pods-UBER-CLONE-UIKIT-TRAINING/Pods-UBER-CLONE-UIKIT-TRAINING.debug.xcconfig"; sourceTree = "<group>"; };
 		4610E844280B41EF007B0D3B /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		4610E847280B5CC2007B0D3B /* CustomDriverAnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDriverAnotation.swift; sourceTree = "<group>"; };
 		4617FFB7280962C600C1A40E /* RegisterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterProtocol.swift; sourceTree = "<group>"; };
 		4617FFB9280963B600C1A40E /* RegisterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterService.swift; sourceTree = "<group>"; };
 		4617FFBC2809975300C1A40E /* UserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserType.swift; sourceTree = "<group>"; };
@@ -88,6 +90,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4610E846280B5CA6007B0D3B /* MapAnotations */ = {
+			isa = PBXGroup;
+			children = (
+				4610E847280B5CC2007B0D3B /* CustomDriverAnotation.swift */,
+			);
+			path = MapAnotations;
+			sourceTree = "<group>";
+		};
 		4617FFB5280962AC00C1A40E /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +275,7 @@
 		46DE3ED02806190F00068079 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				4610E846280B5CA6007B0D3B /* MapAnotations */,
 				4617FFDB2809FDF600C1A40E /* LocationInputActivasionView.swift */,
 				4617FFDD280A0F1F00C1A40E /* LocationInputView.swift */,
 			);
@@ -550,6 +561,7 @@
 				4617FFDE280A0F1F00C1A40E /* LocationInputView.swift in Sources */,
 				4617FFD62809B50200C1A40E /* HomeViewController.swift in Sources */,
 				4617FFBA280963B600C1A40E /* RegisterService.swift in Sources */,
+				4610E848280B5CC2007B0D3B /* CustomDriverAnotation.swift in Sources */,
 				46DE3EE328063D4F00068079 /* UIViewExtensions.swift in Sources */,
 				46DE3EBC280618DB00068079 /* SceneDelegate.swift in Sources */,
 				467780F228082DC6005FDF49 /* RegisterController.swift in Sources */,
