@@ -26,7 +26,7 @@ class HomeViewController : UIViewController, LocationActivationViewDelegate, Loc
  
  private let locationActivasionView : LocationActivationView =  LocationActivationView()
  
- private let locationInputView : LocationInputView = LocationInputView()
+ private let locationInputView : InputView = InputView()
 
  private let tableView = UITableView()
  
@@ -37,68 +37,68 @@ class HomeViewController : UIViewController, LocationActivationViewDelegate, Loc
  
 
 
+
+
  override func viewDidLoad() {
   super.viewDidLoad()
 
   checkUserStatus()
-
-  getUserCredentials()
-
-  view.backgroundColor = .red
-
-  navigationController?.navigationBar.isHidden = true
-
-  makeMapView()
-
   locationManager.enableLocationServices()
-
-  makeInputView()
-
-  configureTableView()
-
-  fetchDrivers()
-
-
+  awakeView()
  }
  
  
  
   // MARK:  Makers
 
+ fileprivate func configureUI() {
+  view.backgroundColor = .red
+  navigationController?.navigationBar.isHidden = true
+  makeMapView()
+  makeInputView()
+  configureTableView()
+ }
+
+
  fileprivate func fetchDrivers() {
-  service.fetchDrivers(location: locationManager.locationManager.location!) { user in
+  var authStatus = locationManager.locationManager.authorizationStatus
 
-   guard let coordinate = user.location?.coordinate else { return }
+  if authStatus == .denied && authStatus == .notDetermined && authStatus == .restricted {
 
-   // to check is that anno is already visible on map
+   print("calisti")
 
-   var driverIsVisible : Bool {
+   locationManager.locationManager.requestAlwaysAuthorization()
 
-    return self.mapView.annotations.contains { annotations in
+   fetchDrivers()
+  }else {
 
-     guard let driverAnno = annotations as? DriverAnnotation else { return false}
+   guard let location = locationManager.locationManager.location else {return}
 
-     if driverAnno.uid == user.email {
-       // update position custom func #note : to make this work coordinate property needed to be declared as dynamic var 
-      driverAnno.updateAnnotationPosition(withCoordinate: coordinate)
+   print(location)
 
+   service.fetchDrivers(location: location) { user in
 
-      
-      return true
+    guard let coordinate = user.location?.coordinate else { return }
+     // to check is that anno is already visible on map
+    var driverIsVisible : Bool {
+
+     return self.mapView.annotations.contains { annotations in
+
+      guard let driverAnno = annotations as? DriverAnnotation else { return false}
+
+      if driverAnno.uid == user.email {
+        // update position custom func #note : to make this work coordinate property needed to be declared as dynamic var
+       driverAnno.updateAnnotationPosition(withCoordinate: coordinate)
+
+       return true
+      }
+      return false
      }
-
-     return false
-
     }
-
+    if !driverIsVisible {
+     self.mapView.addAnnotation(DriverAnnotation(uid: user.email, coordinate: coordinate))
+    }
    }
-
-
-   if !driverIsVisible {
-    self.mapView.addAnnotation(DriverAnnotation(uid: user.email, coordinate: coordinate))
-   }
-
-
   }
  }
 
@@ -120,6 +120,7 @@ class HomeViewController : UIViewController, LocationActivationViewDelegate, Loc
   mapView.showsUserLocation = true
   mapView.userTrackingMode = .follow
   mapView.delegate = self
+
  }
  
  fileprivate func makeInputView() {
@@ -155,10 +156,17 @@ class HomeViewController : UIViewController, LocationActivationViewDelegate, Loc
  
  
   // MARK: Functions
+
+ func awakeView() {
+  configureUI()
+  getUserCredentials()
+  fetchDrivers()
+ }
  
  func checkUserStatus() {
   if (Firebase.Auth.auth().currentUser?.uid) != nil  {
    print("user was already logged in")
+   awakeView()
   }else {
    let vc = UINavigationController(rootViewController: LoginController())
    vc.modalPresentationStyle = .fullScreen

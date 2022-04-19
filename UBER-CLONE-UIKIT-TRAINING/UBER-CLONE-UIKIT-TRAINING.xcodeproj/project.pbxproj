@@ -21,7 +21,7 @@
 		4617FFD82809FA0200C1A40E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4617FFD72809FA0200C1A40E /* LocationManager.swift */; };
 		4617FFDA2809FDB500C1A40E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4617FFD92809FDB500C1A40E /* HomeView.swift */; };
 		4617FFDC2809FDF600C1A40E /* LocationInputActivasionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4617FFDB2809FDF600C1A40E /* LocationInputActivasionView.swift */; };
-		4617FFDE280A0F1F00C1A40E /* LocationInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4617FFDD280A0F1F00C1A40E /* LocationInputView.swift */; };
+		4617FFDE280A0F1F00C1A40E /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4617FFDD280A0F1F00C1A40E /* InputView.swift */; };
 		462317EA280AAD0C009C613C /* CellWithSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462317E9280AAD0C009C613C /* CellWithSubtitleTableViewCell.swift */; };
 		462317EC280AC42C009C613C /* HomeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462317EB280AC42C009C613C /* HomeProtocol.swift */; };
 		462317EE280AC478009C613C /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462317ED280AC478009C613C /* UserModel.swift */; };
@@ -55,7 +55,7 @@
 		4617FFD72809FA0200C1A40E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		4617FFD92809FDB500C1A40E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4617FFDB2809FDF600C1A40E /* LocationInputActivasionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInputActivasionView.swift; sourceTree = "<group>"; };
-		4617FFDD280A0F1F00C1A40E /* LocationInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInputView.swift; sourceTree = "<group>"; };
+		4617FFDD280A0F1F00C1A40E /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		462317E9280AAD0C009C613C /* CellWithSubtitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellWithSubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		462317EB280AC42C009C613C /* HomeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProtocol.swift; sourceTree = "<group>"; };
 		462317ED280AC478009C613C /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -277,7 +277,7 @@
 			children = (
 				4610E846280B5CA6007B0D3B /* MapAnotations */,
 				4617FFDB2809FDF600C1A40E /* LocationInputActivasionView.swift */,
-				4617FFDD280A0F1F00C1A40E /* LocationInputView.swift */,
+				4617FFDD280A0F1F00C1A40E /* InputView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -558,7 +558,7 @@
 				46E3EABF2806F6C100667769 /* CustomLabel.swift in Sources */,
 				46DE3EDF2806278E00068079 /* LoginController.swift in Sources */,
 				4617FFDC2809FDF600C1A40E /* LocationInputActivasionView.swift in Sources */,
-				4617FFDE280A0F1F00C1A40E /* LocationInputView.swift in Sources */,
+				4617FFDE280A0F1F00C1A40E /* InputView.swift in Sources */,
 				4617FFD62809B50200C1A40E /* HomeViewController.swift in Sources */,
 				4617FFBA280963B600C1A40E /* RegisterService.swift in Sources */,
 				4610E848280B5CC2007B0D3B /* CustomDriverAnotation.swift in Sources */,

@@ -7,23 +7,29 @@
 
 import UIKit
 
-protocol LocationInputViewDelegate : AnyObject {
+protocol LocationInputViewDelegate {
  func dismissLocationInputView()
+ func executeSearch(query: String)
 }
 
-class LocationInputView: UIView {
+class InputView: UIView {
  
   // MARK:  Properties
  weak var delegate: LocationInputViewDelegate?
  
  let backButton : UIButton = {
   let button = UIButton()
-  button.setImage(UIImage(named: "baseline_arrow_back_black_36dp")?.withRenderingMode(.alwaysOriginal), for: .normal)
+  button.setImage(UIImage(named: "baseline_arrow_back_black_36dp")?
+   .withRenderingMode(.alwaysOriginal), for: .normal)
+
   button.addTarget(self, action: #selector(handleBackButtonTapped), for: .touchUpInside)
+
   return button
  }()
  var titleLabel : UILabel = {
+
   let label = CustomLabel.makeSimpleLabel(labelText: "Amber", labelColor: UIColor.darkGray, topography: UIFont.TextStyle.body )
+
   label.font = .systemFont(ofSize: 16, weight: .bold)
   return label
  }()
@@ -51,15 +57,22 @@ class LocationInputView: UIView {
 
  let currentLocationTextField : UITextField = {
   let tf = UITextField()
-  tf.backgroundColor = .groupTableViewBackground 
+  tf.backgroundColor = .groupTableViewBackground
+  
   tf.placeholder = "   Current Location"
   return tf
  }()
 
- let destinationLocationTextField : UITextField = {
+ let destLocationTF : UITextField = {
   let tf = UITextField()
+  tf.placeholder = "Enter a destination.."
   tf.backgroundColor = .lightGray
-  tf.placeholder = "   Please type a adress here"
+  tf.returnKeyType = .search
+  tf.font = UIFont.systemFont(ofSize: 14)
+
+  tf.leftViewMode = .always
+  tf.delegate = self
+  tf.clearButtonMode = .whileEditing
   return tf
  }()
  
@@ -74,21 +87,10 @@ class LocationInputView: UIView {
  @objc func handleBackButtonTapped() {
   delegate?.dismissLocationInputView()
  }
+
  
  
- 
- 
-
-
-
-
-
- fileprivate func makeDestionationTextField() {
-  addSubview(destinationLocationTextField)
-  destinationLocationTextField.centerY(inView: destinationLocationIndicatorView)
-  destinationLocationTextField.anchor(right: rightAnchor, left: destinationLocationIndicatorView.rightAnchor, paddingTop: 0, paddingBottom: 0, paddingRight: 50, paddingLeft: 20,  height: 40)
- }
-
+ // MARK:  init
  override init(frame: CGRect) {
   super.init(frame: frame)
   backgroundColor = .white
@@ -111,6 +113,12 @@ class LocationInputView: UIView {
  
   // MARK:  Makers
 
+
+ fileprivate func makeDestionationTextField() {
+  addSubview(destLocationTF)
+  destLocationTF.centerY(inView: destinationLocationIndicatorView)
+  destLocationTF.anchor(right: rightAnchor, left: destinationLocationIndicatorView.rightAnchor, paddingTop: 0, paddingBottom: 0, paddingRight: 50, paddingLeft: 20,  height: 40)
+ }
 
  fileprivate func makeDestionationIndicatorView() {
   addSubview(destinationLocationIndicatorView)
@@ -146,7 +154,15 @@ class LocationInputView: UIView {
                     width: 24, height: 24)
   
  }
- 
- 
- 
+
 }
+
+
+extension InputView: UITextFieldDelegate {
+ func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+  guard let query = textField.text else { return false }
+  delegate?.executeSearch(query: query)
+  return true
+ }
+}
+
