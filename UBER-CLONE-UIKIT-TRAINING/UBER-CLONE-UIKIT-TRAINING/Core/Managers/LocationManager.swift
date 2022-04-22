@@ -44,4 +44,11 @@ class LocationManager : NSObject, CLLocationManagerDelegate {
    locationManager.requestAlwaysAuthorization()
   }
  }
+
+ func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+  print("DEBUG: didChange calisti")
+  DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+   HomeViewController().fetchDrivers()
+  }
+ }
 }

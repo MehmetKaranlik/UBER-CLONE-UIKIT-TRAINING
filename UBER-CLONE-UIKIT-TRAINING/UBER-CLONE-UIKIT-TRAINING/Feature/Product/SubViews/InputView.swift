@@ -8,14 +8,14 @@
 import UIKit
 
 protocol LocationInputViewDelegate {
- func dismissLocationInputView()
+ func dismissLocationInputView(completion: ((Bool)->Void)?)
  func executeSearch(query: String)
 }
 
 class InputView: UIView {
  
   // MARK:  Properties
- weak var delegate: LocationInputViewDelegate?
+  var inputViewDelegate: LocationInputViewDelegate?
  
  let backButton : UIButton = {
   let button = UIButton()
@@ -28,8 +28,7 @@ class InputView: UIView {
  }()
  var titleLabel : UILabel = {
 
-  let label = CustomLabel.makeSimpleLabel(labelText: "Amber", labelColor: UIColor.darkGray, topography: UIFont.TextStyle.body )
-
+  let label = CustomLabel.makeSimpleLabel(labelText: "", labelColor: UIColor.darkGray, topography: UIFont.TextStyle.body )
   label.font = .systemFont(ofSize: 16, weight: .bold)
   return label
  }()
@@ -38,14 +37,12 @@ class InputView: UIView {
   let view = UIView()
   view.backgroundColor = .lightGray
   view.layer.cornerRadius = 3
-  
   return view
  }()
 
  let destinationLocationIndicatorView : UIView = {
   let view = UIView()
   view.backgroundColor = .gray
-
   return view
  }()
 
@@ -63,13 +60,13 @@ class InputView: UIView {
   return tf
  }()
 
- let destLocationTF : UITextField = {
+ lazy var  destLocationTF : UITextField = {
   let tf = UITextField()
+
   tf.placeholder = "Enter a destination.."
   tf.backgroundColor = .lightGray
   tf.returnKeyType = .search
   tf.font = UIFont.systemFont(ofSize: 14)
-
   tf.leftViewMode = .always
   tf.delegate = self
   tf.clearButtonMode = .whileEditing
@@ -85,12 +82,14 @@ class InputView: UIView {
   // MARK:  Selectors
  
  @objc func handleBackButtonTapped() {
-  delegate?.dismissLocationInputView()
+  inputViewDelegate?.dismissLocationInputView(completion: nil)
+  self.destLocationTF.text = ""
  }
 
  
  
  // MARK:  init
+
  override init(frame: CGRect) {
   super.init(frame: frame)
   backgroundColor = .white
@@ -101,9 +100,7 @@ class InputView: UIView {
   makeCurrentLocationTextField()
   makeDestionationIndicatorView()
   makeDestionationTextField()
-  addSubview(linkingView)
-  linkingView.centerX(inView: currentLocationIndicatorView)
-  linkingView.anchor(top: currentLocationIndicatorView.bottomAnchor, bottom: destinationLocationIndicatorView.topAnchor, paddingTop: 6, paddingBottom: 6, paddingRight: 0, paddingLeft: 0, width: 0.75)
+  makeLinkingView()
  }
  
  required init?(coder aDecoder: NSCoder) {
@@ -113,30 +110,51 @@ class InputView: UIView {
  
   // MARK:  Makers
 
+ fileprivate func makeLinkingView() {
+  addSubview(linkingView)
+  linkingView.centerX(inView: currentLocationIndicatorView)
+  linkingView.anchor(top: currentLocationIndicatorView.bottomAnchor,
+                     bottom: destinationLocationIndicatorView.topAnchor,
+                     paddingTop: 6, paddingBottom: 6,
+                     paddingRight: 0, paddingLeft: 0, width: 0.75)
+ }
+
 
  fileprivate func makeDestionationTextField() {
   addSubview(destLocationTF)
   destLocationTF.centerY(inView: destinationLocationIndicatorView)
-  destLocationTF.anchor(right: rightAnchor, left: destinationLocationIndicatorView.rightAnchor, paddingTop: 0, paddingBottom: 0, paddingRight: 50, paddingLeft: 20,  height: 40)
+  destLocationTF.anchor(right: rightAnchor,
+                        left: destinationLocationIndicatorView.rightAnchor,
+                        paddingTop: 0, paddingBottom: 0,
+                        paddingRight: 50, paddingLeft: 20,  height: 40)
  }
 
  fileprivate func makeDestionationIndicatorView() {
   addSubview(destinationLocationIndicatorView)
   destinationLocationIndicatorView.centerX(inView: backButton)
-  destinationLocationIndicatorView.anchor(top: currentLocationIndicatorView.bottomAnchor, paddingTop: 50, paddingBottom: 0, paddingRight: 0, paddingLeft: 0, width: 6, height: 6)
+  destinationLocationIndicatorView.anchor(top: currentLocationIndicatorView.bottomAnchor,
+                                          paddingTop: 50, paddingBottom: 0,
+                                          paddingRight: 0, paddingLeft: 0,
+                                          width: 6, height: 6)
  }
 
  fileprivate func makeCurrentLocationTextField() {
   addSubview(currentLocationTextField)
   currentLocationTextField.centerY(inView: currentLocationIndicatorView)
-  currentLocationTextField.anchor(right: rightAnchor, left: currentLocationIndicatorView.rightAnchor, paddingTop: 0, paddingBottom: 0, paddingRight: 50, paddingLeft: 20, height: 40)
+  currentLocationTextField.anchor(right: rightAnchor,
+                                  left: currentLocationIndicatorView.rightAnchor,
+                                  paddingTop: 0, paddingBottom: 0,
+                                  paddingRight: 50, paddingLeft: 20, height: 40)
  }
 
 
  fileprivate func makeCurrentLocationIndicatorView() {
   addSubview(currentLocationIndicatorView)
   currentLocationIndicatorView.centerX(inView: backButton)
-  currentLocationIndicatorView.anchor(top: backButton.bottomAnchor, paddingTop: 24, paddingBottom: 0, paddingRight: 0, paddingLeft: 0, width: 6, height: 6)
+  currentLocationIndicatorView.anchor(top: backButton.bottomAnchor,
+                                      paddingTop: 24, paddingBottom: 0,
+                                      paddingRight: 0, paddingLeft: 0,
+                                      width: 6, height: 6)
  }
 
  fileprivate func makeTitleLabel() {
@@ -161,8 +179,9 @@ class InputView: UIView {
 extension InputView: UITextFieldDelegate {
  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
   guard let query = textField.text else { return false }
-  delegate?.executeSearch(query: query)
+  inputViewDelegate?.executeSearch(query: query)
   return true
  }
+
 }
 

@@ -1,20 +1,37 @@
-//
-//  CellWithSubtitleTableViewCell.swift
-//  UBER-CLONE-UIKIT-TRAINING
-//
-//  Created by mehmet karanlık on 16.04.2022.
-//
+ //
+ //  CellWithSubtitleTableViewCell.swift
+ //  UBER-CLONE-UIKIT-TRAINING
+ //
+ //  Created by mehmet karanlık on 16.04.2022.
+ //
 
 import UIKit
+import MapKit
+
 let locationReuseIdentifier = "LocationCell"
+
 class CellWithSubtitleTableViewCell: UITableViewCell {
 
- // MARK:  Properties
+ var placemark : MKPlacemark? {
+  didSet {
+   titleLabel.text = placemark?.name
+   if let subtitle = placemark?.returnAddress() {
+    subtitleLabel.text = subtitle
+   }else {
+    subtitleLabel.text = ""
+   }
+  }
+ }
 
-private let titleLabel : UILabel = {
+
+
+
+  // MARK:  Properties
+
+ private let titleLabel : UILabel = {
   let label = UILabel()
   label.font =  .systemFont(ofSize: 14)
- label.text = "123 Main Street"
+  label.text = "123 Main Street"
   return label
  }()
 
@@ -28,7 +45,7 @@ private let titleLabel : UILabel = {
  }()
 
 
- // MARK:  Lifecycle
+  // MARK:  Lifecycle
 
  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
   super.init(style: style, reuseIdentifier: reuseIdentifier)
